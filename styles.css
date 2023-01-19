@@ -1,0 +1,46 @@
+html {
+  height: 100%;
+}
+body {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr auto;
+  align-items: center;
+  min-height: 100%;
+  margin: 0px;
+}
+.gameWindow {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  grid-template-rows: 1fr 6fr 1fr;
+  grid-area: 1/2/2/3;
+  background-color: white;
+  border: 5px solid rgb(0, 0, 0);
+  height: 445px;
+  width: 951px;
+}
+
+footer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-area: 3/1/4/4;
+  background-color: black;
+  color: white;
+  padding: 5px;
+}
+
+.gameBoard {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  grid-area: 2/2/3/3;
+}
+
+#heartWindow {
+  grid-area: 1/1/4/2;
+}
+
+#skullWindow {
+  grid-area: 1/3/4/4;
+}
