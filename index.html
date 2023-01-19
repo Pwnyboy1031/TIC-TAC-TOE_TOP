@@ -9,14 +9,33 @@
     <title>Tic Tac Toe</title>
   </head>
   <body>
+    <header>Tic Tac Toe</header>
     <div class="gameWindow">
-      <div class="playerWindow" id="heartWindow"></div>
-      <div class="gameBoard">
-        <button></button><button></button><button></button><button></button
-        ><button></button><button></button><button></button><button></button
-        ><button></button>
+      <div id="heartWindow">
+        <div id="heartName" class="playerNameplate">Player 1</div>
+        <img src="./graphics/heart-svgrepo-com.svg" id="heartScoreboard" />
       </div>
-      <div class="playerWindow" id="skullWindow"></div>
+
+      <div id="skullWindow">
+        <div id="skullName" class="playerNameplate">Player 2</div>
+        <img
+          src="./graphics/skull-line-drawing-svgrepo-com.svg"
+          id="skullScoreboard"
+        />
+      </div>
+
+      <div class="gameBoard">
+        <button class="boardButtons" id="zone1"></button
+        ><button class="boardButtons" id="zone2"></button
+        ><button class="boardButtons" id="zone3"></button
+        ><button class="boardButtons" id="zone4"></button
+        ><button class="boardButtons" id="zone5"></button
+        ><button class="boardButtons" id="zone6"></button
+        ><button class="boardButtons" id="zone7"></button
+        ><button class="boardButtons" id="zone8"></button
+        ><button class="boardButtons" id="zone9"></button>
+      </div>
+      <div id="outcomeBanner">Make a move to start!</div>
     </div>
     <div></div>
     <footer>
