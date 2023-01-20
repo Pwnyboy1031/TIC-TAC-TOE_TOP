@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", (e) => {
   // Tracks X and O positions
   const gameBoard = (function () {
-    const boardPositions = ["", "", "", "O", "X", "O", "", "", ""];
+    let boardPositions = ["", "", "", "", "", "", "", "", ""];
 
     const updateBoard = (moveChoice) =>
-      (boardPositions[moveChoice] = gameController.playerShape);
+      (boardPositions.splice(moveChoice,1,gameController.getPlayerTurn()))
 
     return {
       updateBoard,
@@ -18,10 +18,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
   // Renders the board and updates every play
   const displayController = (function () {
     //cache Dom
-
     let cachedPositions = [];
     for (let i = 0; i < gameBoard.boardPositions.length; i++) {
-      cachedPositions[i] = document.getElementById(`zone${i + 1}`);
+      cachedPositions[i] = document.getElementById(`zone${i}`);
     }
 
     function render() {
@@ -35,37 +34,43 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
   const player = (name, mark) => {
     const sayName = () => console.log(name);
-    const takeTurn = () => {
-      return mark;
-    };
-    return { takeTurn, sayName };
+    return { sayName, name, mark };
   };
 
   // Controls game state
   const gameController = (() => {
     const player1 = player("Player 1", "X");
     const player2 = player("Player 2", "O");
+    const gameBoardDiv = document.querySelector(".gameBoardDiv");
 
     let playerShape = "";
     let moveChoice = "";
+    let turnCount = 1;
+
+    function getPlayerTurn() {
+      if (turnCount % 2 == 0) {
+        return player2.mark;
+      } else {
+        return player1.mark;
+      }
+    }
+
+    function takeTurn() {
+      gameBoardDiv.addEventListener("click", (e) => {
+        moveChoice = "";
+        if (e.target.classList.contains("boardButtons")) {
+          moveChoice = e.target.id.replace("zone", "");
+          gameBoard.updateBoard(moveChoice);
+          displayController.render();
+          turnCount +=1;
+        }
+      });  
+    }
 
     gameBoard.render();
-    playerShape = player1.takeTurn();
+    takeTurn();
 
-    const gameBoardDiv = document.querySelector(".gameBoardDiv");
-    gameBoardDiv.addEventListener("click", (e) => {
-      moveChoice = "";
-      if (e.target.classList.contains("boardButtons")) {
-        moveChoice = e.target.id;
-        gameBoard.updateBoard(moveChoice);
-        displayController.render();
-        if (playerShape == "X") {
-          playerShape = "O";
-        } else if (playerShape == "O") {
-          playerShape = "X";
-        } else playerShape = "X";
-      }
-    });
-    return { playerShape, moveChoice };
+
+    return { playerShape, moveChoice, getPlayerTurn};
   })();
 });

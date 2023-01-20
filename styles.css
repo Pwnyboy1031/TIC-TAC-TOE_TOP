@@ -86,27 +86,27 @@ footer {
   height: 115px;
 }
 
-#zone1,
-#zone4,
-#zone7 {
+#zone0,
+#zone3,
+#zone6 {
   border-left: none;
 }
 
+#zone0,
 #zone1,
-#zone2,
-#zone3 {
+#zone2 {
   border-top: none;
 }
 
-#zone3,
-#zone6,
-#zone9 {
+#zone2,
+#zone5,
+#zone8 {
   border-right: none;
 }
 
+#zone6,
 #zone7,
-#zone8,
-#zone9 {
+#zone8 {
   border-bottom: none;
 }
 
