@@ -26,9 +26,9 @@ document.addEventListener("DOMContentLoaded", (e) => {
     function render() {
       gameBoard.boardPositions.forEach(function (mark, index) {
         if(mark === "X") {
-          cachedPositions[index].innerHTML = `<img src='/graphics/heart.svg'/>`;
+          cachedPositions[index].innerHTML = `<img src='./graphics/heart.svg'/>`;
         } else if (mark === "O") {
-          cachedPositions[index].innerHTML = `<img src='/graphics/skull.svg'/>`;
+          cachedPositions[index].innerHTML = `<img src='./graphics/skull.svg'/>`;
         }
       });
     }
