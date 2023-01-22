@@ -122,8 +122,8 @@ document.addEventListener("DOMContentLoaded", (e) => {
                    el.disabled = true;
                 });
                 if (winner == "X") {
-                  document.getElementById("outcomeBanner").innerHTML = `<img src='/graphics/heart.svg'/>` + "&nbsp;is the winner!"
-                } else document.getElementById("outcomeBanner").innerHTML = `<img src='/graphics/skull.svg'/>` + "&nbsp;is the winner!"
+                  document.getElementById("outcomeBanner").innerHTML = `<img src='graphics/heart.svg'/>` + "&nbsp;is the winner!"
+                } else document.getElementById("outcomeBanner").innerHTML = `<img src='graphics/skull.svg'/>` + "&nbsp;is the winner!"
                 
              }
              
