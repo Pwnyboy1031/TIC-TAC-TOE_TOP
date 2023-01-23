@@ -25,11 +25,11 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     function render() {
       gameBoard.boardPositions.forEach(function (mark, index) {
-        if(mark === "X") {
+        if (mark === "X") {
           cachedPositions[index].innerHTML = `<img src='graphics/heart.svg'/>`;
         } else if (mark === "O") {
           cachedPositions[index].innerHTML = `<img src='graphics/skull.svg'/>`;
-        }
+        } 
       });
     }
 
@@ -46,8 +46,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
     const player1 = player("Player 1", "X");
     const player2 = player("Player 2", "O");
     const gameBoardDiv = document.querySelector(".gameBoardDiv");
-    
-   
+
     let playerShape = "";
     let moveChoice = "";
     let turnCount = 1;
@@ -91,7 +90,7 @@ document.addEventListener("DOMContentLoaded", (e) => {
 
     function checkDraw() {
       if (gameBoard.boardPositions.every((position) => position != "")) {
-        console.log("Draw");
+        winner = "draw";
       }
     }
 
@@ -103,36 +102,44 @@ document.addEventListener("DOMContentLoaded", (e) => {
             if (e.target.innerHTML != "") {
               // invalid move
               takeTurn();
-              console.log(gameBoard.boardPositions);
             } else {
               // Valid move
               moveChoice = e.target.id.replace("zone", "");
               gameBoard.updateBoard(moveChoice);
               displayController.render();
               turnCount += 1;
-              console.log(gameBoard.boardPositions);
-              console.log(displayController.cachedPositions);
               checkWin();
               checkDraw();
               if (winner != "") gameOver = true;
-              if(gameOver){
+              if (gameOver) {
                 gameBoardDiv.removeEventListener("click", takeTurn);
-                displayController.cachedPositions.forEach(function(el) {
-                   el.removeEventListener("click", takeTurn);
-                   el.disabled = true;
+                displayController.cachedPositions.forEach(function (el) {
+                  el.removeEventListener("click", takeTurn);
+                  el.disabled = true;
+                });
+                const restartBtn = document.createElement("button");
+                restartBtn.addEventListener('click', (e) => {
+                  document.location.reload(true);
                 });
                 if (winner == "X") {
-                  document.getElementById("outcomeBanner").innerHTML = `<img src='graphics/heart.svg'/>` + "&nbsp;is the winner!"
-                } else document.getElementById("outcomeBanner").innerHTML = `<img src='graphics/skull.svg'/>` + "&nbsp;is the winner!"
-                
-             }
-             
-             
+                  document.getElementById("outcomeBanner").innerHTML = `<img src='graphics/heart.svg'/>` + "&nbsp;is the winner!&nbsp;";
+                  restartBtn.innerText = "Restart?"
+                  document.getElementById("outcomeBanner").appendChild(restartBtn);
+                } else if (winner == "O") {
+                  document.getElementById("outcomeBanner").innerHTML =
+                    `<img src='graphics/skull.svg'/>` + "&nbsp;is the winner!&nbsp;";
+                    restartBtn.innerText = "Restart?"
+                  document.getElementById("outcomeBanner").appendChild(restartBtn);
+                } else {
+                  document.getElementById("outcomeBanner").innerHTML = `<h2>Tie game!</h2>`;
+                  restartBtn.innerText = "Restart?"
+                  document.getElementById("outcomeBanner").appendChild(restartBtn);
+                }
+              }
             }
           }
         });
       } else gameBoardDiv.removeEventListener("click", takeTurn);
-      
     }
 
     gameBoard.render();

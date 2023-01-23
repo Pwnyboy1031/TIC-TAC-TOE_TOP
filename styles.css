@@ -60,6 +60,29 @@ header {
   height: 50px;
   width: auto;
 }
+@keyframes restart {
+  0% {opacity: 0;}
+  25% {opacity: 25;}
+  50% {opacity: 50;}
+  75% {opacity: 75;}
+  100% {opacity: 100;}
+}
+
+#outcomeBanner > button {
+  height: 50px;
+  width: auto;
+  background-color: white;
+  border: none;
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 25px;
+  font-weight: 800;
+  animation-name: restart;
+  animation-duration: 10s;
+}
+
+#outcomeBanner > button:hover {
+  font-size: 30px;
+}
 
 footer {
   display: flex;
